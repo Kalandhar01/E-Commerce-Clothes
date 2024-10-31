@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { cart_icon, dropdown_icon, menu_icon, profile_icon, search_icon, white } from '../assets/index';
+import { ShopContext } from '../context/ShopCon';
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
+  const {showSearch ,setShowSearch} = useContext(ShopContext);
 
   const handleMenuToggle = () => {
     setVisible((prevVisible) => !prevVisible);
   };
+
+  const handleSearch= ()=>{
+    setShowSearch ((prev) => !prev);
+  }
 
   return (
     <>
@@ -41,7 +47,9 @@ const Navbar = () => {
 
         {/* User info */}
         <div className='flex items-center gap-6'>
-          <img src={search_icon} alt="" className='w-4 cursor-pointer' />
+          <img src={search_icon}
+          onClick={handleSearch} 
+          alt="" className='w-4 cursor-pointer' />
 
           <div className='group relative '> 
             <img src={profile_icon} alt="" className='w-4 cursor-pointer' />
