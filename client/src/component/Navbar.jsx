@@ -11,8 +11,12 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='flex items-center justify-between py-5 font-medium'>
+      <div className='flex items-center justify-between py-5 font-medium '>
+      
+      <Link to='/'>
         <img src={white} alt="" className='w-36' />
+       </Link>
+
         <ul className='hidden sm:flex gap-5 text-sm text-gray-700'>
           <NavLink to='/' className='flex flex-col items-center gap-1'>
             <p>HOME</p>
@@ -39,9 +43,9 @@ const Navbar = () => {
         <div className='flex items-center gap-6'>
           <img src={search_icon} alt="" className='w-4 cursor-pointer' />
 
-          <div className='group relative'> 
+          <div className='group relative '> 
             <img src={profile_icon} alt="" className='w-4 cursor-pointer' />
-            <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
+            <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4 z-20'>
               <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded'>
                 <p className='cursor-pointer hover:text-black'>My Profile</p>
                 <p className='cursor-pointer hover:text-black'>Orders</p>
@@ -58,7 +62,7 @@ const Navbar = () => {
           <img src={menu_icon} alt="" onClick={handleMenuToggle} className='w-4' />
           
           {/* Menu Button Handler */}
-          <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${visible ? 'w-full' : 'w-0'}`}>
+          <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${visible ? 'w-full h-screen z-20 backdrop-blur-lg' : 'w-0'}`}>
 
             <div className='flex flex-col text-gray-600'>
               <div onClick={handleMenuToggle} className='flex items-center gap-4 p-3'>

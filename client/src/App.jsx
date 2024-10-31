@@ -14,7 +14,7 @@ import Product from './page/Product'
 const App = () => {
   return (
 
-    <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
+    <div className='px-4 sm:px-[1vw] md:px-[1vw] lg:px-[4vw]'>
 
       <Navbar/>
 
@@ -33,6 +33,7 @@ const App = () => {
         
 
       </Routes>
+      {/* <Footer className='p-0 '/> */}
 
      
 
