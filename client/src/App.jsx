@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 import Navbar from './component/Navbar'
 import SearchBar from './component/SearchBar'
 import About from './page/About'
@@ -11,11 +12,15 @@ import Login from './page/Login'
 import Orders from './page/Orders'
 import PlaceOrder from './page/PlaceOrder'
 import Product from './page/Product'
+// toast
+import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
   return (
 
     <div className='px-4 sm:px-[1vw] md:px-[1vw] lg:px-[4vw]'>
+      <ToastContainer />
+
 
       <Navbar/>
       <SearchBar/>

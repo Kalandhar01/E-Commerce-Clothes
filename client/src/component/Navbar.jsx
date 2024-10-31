@@ -5,7 +5,7 @@ import { ShopContext } from '../context/ShopCon';
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
-  const {showSearch ,setShowSearch} = useContext(ShopContext);
+  const {showSearch ,setShowSearch ,getCardCount} = useContext(ShopContext);
 
   const handleMenuToggle = () => {
     setVisible((prevVisible) => !prevVisible);
@@ -64,7 +64,7 @@ const Navbar = () => {
 
           <Link to='/cart' className='relative'>
             <img src={cart_icon} alt="" className='w-4' />
-            <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>10</p>
+            <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>{getCardCount()}</p>
           </Link>
 
           <img src={menu_icon} alt="" onClick={handleMenuToggle} className='w-4' />
