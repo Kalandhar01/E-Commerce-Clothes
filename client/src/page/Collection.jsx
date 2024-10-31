@@ -11,6 +11,10 @@ const Collection = () => {
   const [subCategory, setSubCategory] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
 
+//sorting
+const [sortType , setSortType] = useState('relavent');
+
+
   useEffect(() => {
     console.log('Initial products:', products); // Check if products array is available
     setFilter(products);
@@ -49,6 +53,47 @@ const Collection = () => {
   useEffect(() => {
     applyFilter();
   }, [category, subCategory, products]);
+
+
+
+
+
+
+  // sorting logic here
+
+  const sortProduct = () => {
+
+
+    let fpCopy = products.slice();
+    switch(sortType){
+
+      case 'low-high': 
+      setFilter(fpCopy.sort( (a,b)=> (a.price - b.price )))
+      break;
+
+      case 'high-low':
+        setFilter( fpCopy.sort( (a,b)=> (b.price - a.price)))
+        break;
+
+        default: 
+        applyFilter();
+        break;
+    }
+
+  }
+
+ useEffect(() => {
+
+  sortProduct();
+
+
+   
+ }, [sortType])
+ 
+
+
+
+
 
   return (
     <>
@@ -137,8 +182,11 @@ const Collection = () => {
             <Title text1="ALL" text2="COLLECTION" />
 
             {/* Product Sort */}
-            <select className="border border-gray-300 text-sm px-2">
-              <option value="relevant">Sort By: Relevant</option>
+            <select 
+            onChange={ (e)=> setSortType(e.target.value)}
+            
+            className="border border-gray-300 text-sm px-2">
+              <option value="relavant">Sort By: Relevant</option>
               <option value="low-high">Sort By: Low to High</option>
               <option value="high-low">Sort By: High to Low</option>
             </select>
