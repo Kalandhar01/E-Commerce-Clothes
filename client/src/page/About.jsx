@@ -1,11 +1,59 @@
-import React from 'react'
+import React from 'react';
+import { about_img } from '../assets';
+import News from '../component/News';
+import Title from '../component/Title';
 
 const About = () => {
   return (
     <div>
-      
-    </div>
-  )
-}
+      <div className="text-2xl text-center pt-8 border-t">
+        <Title text1={"ABOUT"} text2={"US"} />
+      </div>
 
-export default About
+      <div className="my-10 flex flex-col md:flex-row gap-16">
+        <img src={about_img} className="w-full md:w-[450px]" alt="About Us" />
+
+        <div className="flex flex-col justify-center gap-6 md:w-2/4 text-gray-600">
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis sequi porro odit sapiente nostrum Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem debitis totam quae.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias, expedita ullam! Eius iste optio quaerat temporibus fugiat ex magnam unde omnis? Nesciunt facere quaerat, aliquam rem eveniet molestiae animi nobis.
+          </p>
+          <b className='text-gray-800'>OUR MISSION</b>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam quo dolorem fuga. Hic voluptates consequatur amet praesentium. Accusamus iste unde sed ducimus tenetur ipsum laborum eveniet minima repudiandae? Atque, nihil.</p>
+        </div>
+      </div>
+
+      <div className='text-xl py-4'>
+        <Title text1={"WHY"} text2={"CHOOSE US"} />
+       
+      </div>
+
+      <div className='flex flex-col md:flex-row text-sm mb-20'>
+        <div className='border px-10 md:px-16 py-8 sm:py-29 flex flex-col gap-5 mb-2'>
+          <b>Quality Assurance :</b>
+          <p className='text-gray-600'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed veritatis illum pariatur sint harum quia. Ratione, aspernatur! Atque est cupiditate doloremque explicabo earum, quo eos tenetur, corporis aperiam nesciunt neque.</p>
+
+        </div>
+        <div className='border px-10 md:px-16 py-8 sm:py-29 flex flex-col gap-5 mb-2'>
+          <b> Convenience :</b>
+          <p className='text-gray-600'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed veritatis illum pariatur sint harum quia. Ratione, aspernatur! Atque est cupiditate doloremque explicabo earum, quo eos tenetur, corporis aperiam nesciunt neque.</p>
+
+        </div>
+        <div className='border px-10 md:px-16 py-8 sm:py-29 flex flex-col gap-5'>
+          <b>Exceptional Customer Service :</b>
+          <p className='text-gray-600'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed veritatis illum pariatur sint harum quia. Ratione, aspernatur! Atque est cupiditate doloremque explicabo earum, quo eos tenetur, corporis aperiam nesciunt neque.</p>
+
+        </div>
+
+      </div>
+
+      <News/>
+
+
+    </div>
+  );
+};
+
+export default About;

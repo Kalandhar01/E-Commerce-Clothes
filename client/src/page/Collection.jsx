@@ -183,14 +183,14 @@ const [sortType , setSortType] = useState('relavent');
 
         {/* Right Side */}
         <div className="flex-1">
-          <div className="flex justify-between text-base sm:text-2xl mb-4">
+          <div className="flex justify-between text-base sm:text-2xl mb-5 max-sm flex-col">
             <Title text1="ALL" text2="COLLECTION" />
 
             {/* Product Sort */}
             <select 
             onChange={ (e)=> setSortType(e.target.value)}
             
-            className="border border-gray-300 text-sm px-2">
+            className="border border-gray-300 text-sm px-2 max-sm:py-5 max-sm:p">
               <option value="relavant">Sort By: Relevant</option>
               <option value="low-high">Sort By: Low to High</option>
               <option value="high-low">Sort By: High to Low</option>

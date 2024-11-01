@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { products } from "../assets";
 
@@ -11,9 +12,11 @@ const ShopContextProvider = (props) => {
     //searching logic
     const [search,setSearch] = useState('');
     const [showSearch,setShowSearch] = useState(true);
-
+    const navigate = useNavigate();
     //Add to cart
     const [cartItems,setCardItems] = useState({});
+
+
     const addToCart = async(itemId,size) =>{
         if(!size){
             toast.error("Select Product Size")
@@ -41,6 +44,8 @@ const ShopContextProvider = (props) => {
         setCardItems(cartData);
     }
 
+    //for card Logic
+
     const getCardCount = ()=>{
         let total = 0;
         for(const items in cartItems){
@@ -58,17 +63,50 @@ const ShopContextProvider = (props) => {
         return total;
     }
 
-
-
     useEffect(() => {
-        console.log(cartItems);
+        // console.log(cartItems);
      
     }, [cartItems])
+
+    //delete card details
+
+    const updateQ = async (itemId,size,quantity)=>{
+        let cardData = structuredClone(cartItems);
+        cardData[itemId][size] = quantity;
+        setCardItems(cardData);
+    } 
+
+
+    //total Card amount
+
+    const Amount =  () =>{
+        let totalAmount = 0;
+        for(const items in cartItems){
+            let itemInfo = products.find((product)=> (product._id === items));
+
+            for(const item in cartItems[items]){
+                try {
+                    if(cartItems[items][item] > 0){
+                        totalAmount = itemInfo.price * cartItems[items][item];
+
+                    }
+                    
+                } catch (error) {
+                    
+                }
+            }
+        }
+        return totalAmount;
+    }
+
+
+
+
     
 
     const value = {
         products, currency, delivery_fee,search,setSearch,showSearch,setShowSearch,
-        cartItems,addToCart,getCardCount
+        cartItems,addToCart,getCardCount,updateQ,Amount,navigate
     };
 
     return (

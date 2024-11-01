@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { left, mal1, mal2, right, rightarr } from '../assets';
 import Button from '../component/Button';
 // import Button from '../components/Button';
+import { Link } from 'react-router-dom';
+
 
 const Hero = () => {
   const containerVariants = {
@@ -82,7 +84,10 @@ const Hero = () => {
                 {collections[currentIndex].description}
               </motion.p>
               <div className='mt-4 text-center md:text-left'> 
-                <Button />
+               <Link to='/collection' >
+               <Button />
+               
+               </Link>
               </div>
             </div>
             <motion.div className='w-[90%] md:w-[50%] mx-auto' initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 0.5 } }}>
