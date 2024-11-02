@@ -55,16 +55,16 @@ const ShopContextProvider = (props) => {
     
         setCardItems(cartData);
 
-        // if(token){
-        //     try {
-        //         await axios.post(backendUrl + '/api/cart/add', {itemId,size},{headers:{token}} )
+        if(token){
+            try {
+                await axios.post(backendUrl + '/api/cart/add', {itemId,size},{headers:{token}} )
 
-        //     } catch (error) {
-        // console.log(error);
-        // toast.error(error.message)
+            } catch (error) {
+        console.log(error);
+        toast.error(error.message)
                         
-        //     }
-        // }
+            }
+        }
     }
 
     //for card Logic
@@ -98,15 +98,15 @@ const ShopContextProvider = (props) => {
         cardData[itemId][size] = quantity;
         setCardItems(cardData);
 
-        // if(token){
-        //     try {
-        //         await axios.post(backendUrl + '/api/cart/update',{itemId,size,quantity},{headers:{token}})
-        //     } catch (error) {
-        //         console.log(error)
-        //         toast.error(error.message)
+        if(token){
+            try {
+                await axios.post(backendUrl + '/api/cart/update',{itemId,size,quantity},{headers:{token}})
+            } catch (error) {
+                console.log(error)
+                toast.error(error.message)
                 
-        //     }
-        // }
+            }
+        }
     } 
 
     
@@ -157,23 +157,24 @@ const ShopContextProvider = (props) => {
     };
 
 
-    // const getUserCart =async (token) =>{
-    //     try{
-    //         const response = await axios.post(backendUrl + '/api/cart/get',{},{headers : {token}})
+    const getUserCart =async (token) =>{
+        try{
+            const response = await axios.post(backendUrl + '/api/cart/get',{},{headers : {token}})
 
-    //         if(response.data.success){
-    //             setCardItems(response.data.cardData)
-    //         }
+            console.log("Cart DAta ", response.data);
+            if(response.data.success){
+                setCardItems(response.data.cardData)
+            }
 
-    //     }
-    //     catch (error){
-    //         console.log(error);
-    //         toast.error(error.message)
+        }
+        catch (error){
+            console.log(error);
+            toast.error(error.message)
 
 
-    //     }
+        }
 
-    // }
+    }
     
 
     useEffect(() => {
@@ -187,7 +188,7 @@ const ShopContextProvider = (props) => {
         if(!token && localStorage.getItem('token')){
             setToken(localStorage.getItem('token'));
             // getUserCart(localStorage.getItem('token'));
-
+            // getUserCart(localStorage.getItem('token'))
         }
         
         
