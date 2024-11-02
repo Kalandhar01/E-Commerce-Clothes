@@ -13,7 +13,7 @@ const LatestCollection = () => {
         setLatestProduct(products.slice(0, 10));
 
 
-    }, [])
+    }, [products])
 
 
 

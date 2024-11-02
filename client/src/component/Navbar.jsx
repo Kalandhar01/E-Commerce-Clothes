@@ -1,11 +1,25 @@
 import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { cart_icon, dropdown_icon, menu_icon, profile_icon, search_icon, white } from '../assets/index';
 import { ShopContext } from '../context/ShopCon';
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
-  const {showSearch ,setShowSearch ,getCardCount} = useContext(ShopContext);
+  const {showSearch ,setShowSearch ,getCardCount ,navigate , token, setToken ,setCardItems} = useContext(ShopContext);
+
+
+  //logout
+  const logout = () => {
+    localStorage.removeItem('token');
+    setToken('');
+    setCardItems({})
+    navigate('/login')
+    toast.success("Loged out")
+
+  
+
+  }
 
   const handleMenuToggle = () => {
     setVisible((prevVisible) => !prevVisible);
@@ -52,17 +66,26 @@ const Navbar = () => {
           alt="" className='w-4 cursor-pointer' />
 
           <div className='group relative '> 
-           
-           <Link to='/login'>
-            <img src={profile_icon} alt="" className='w-4 cursor-pointer' />
-           </Link>
+            <img onClick={()=> token ? null : navigate('/login')} src={profile_icon} alt="" className='w-4 cursor-pointer' />
+
+{
+  token && 
+
+  
             <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4 z-20'>
               <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded'>
                 <p className='cursor-pointer hover:text-black'>My Profile</p>
-                <p className='cursor-pointer hover:text-black'>Orders</p>
-                <p className='cursor-pointer hover:text-black'>Log Out</p>
+                <p 
+                onClick={ ()=> navigate('/orders')}
+                className='cursor-pointer hover:text-black'>Orders</p>
+                <p
+                onClick={logout}
+                className='cursor-pointer hover:text-black'>Log Out</p>
               </div>
             </div>
+}
+
+
           </div>
 
           <Link to='/cart' className='relative'>

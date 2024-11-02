@@ -4,6 +4,7 @@ import express from 'express';
 import connectCloudinary from './config/cloudnary.js';
 // import connectCloudinary from './config/cloudinary.js'; // Fixed typo
 import connectDB from './config/mongodb.js';
+import cartRouter from './routes/cartRoutes.js';
 import productRouter from './routes/ProductRoute.js';
 import userRouter from './routes/userRoutes.js';
 
@@ -25,6 +26,9 @@ app.use(cors());
 // API Endpoints
 app.use('/api/user', userRouter);
 app.use('/api/product',productRouter)
+
+//cart
+app.use('/api/cart',cartRouter)
 
 app.get('/', (req, res) => {
     res.send("API WORKING");

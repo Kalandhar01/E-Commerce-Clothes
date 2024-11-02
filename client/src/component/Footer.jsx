@@ -26,7 +26,7 @@ const Footer = () => {
 
         <>
 
-            <div className="w-full h-[23rem] bg-black max-sm:h-full p-[60px] max-sm:px-5 pb-6 ">
+            <div className="w-full h-[23rem] bg-black max-sm:h-full p-[40px]  pb-6 ">
                 <div className="flex justify-start  items-start gap-12 max-sm:flex-col max-sm:gap-10">
 
                     {/* //1st div */}
@@ -270,9 +270,7 @@ const Footer = () => {
            
                 <div className=" w-full sm:w-[100%] max-w-[100%] mt- 7 ">
   <div className=" w-full">
-    <h1 className="text-[#B7B7B7] opacity-50 max-w-full  overflow-hidden">
-      ___________________________________________________________________________________________________________________________________________________________________
-    </h1>
+   <hr  className="mt-2"/>
   </div>
 
   <div className="flex justify-center pt-3">
