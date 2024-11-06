@@ -32,7 +32,7 @@ const Product = () => {
           {/* Product images */}
           <div className='flex-1 flex flex-col gap-3 sm:flex-row sm:flex-row-reverse'>
           <div className='w-full sm:w-[80%] sm:pl-10'>
-              <img src={image} alt="Main Product" className='w-50 h-auto' />
+              <img src={image} alt="Main Product" className='w-50 h-50' />
             </div>
             
             <div className='flex flex-row sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full'>

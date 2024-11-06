@@ -1,9 +1,41 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Title from '../component/Title';
 import { ShopContext } from '../context/ShopCon';
 
 const Orders = () => {
-  const {products,currency} =useContext(ShopContext);
+  const {products, currency, delivery_fee,search,setSearch,showSearch,setShowSearch,
+    cartItems,addToCart,getCardCount,updateQ,Amount,navigate,backendUrl,setToken,token,setCardItems} =useContext(ShopContext);
+
+
+  //showon page
+  useEffect(() => {
+    loadOrderData();
+    
+
+  }, [token]);
+  const[orderData, setOrderData] = useState([]);
+
+  //toload the data from backend
+  const loadOrderData = async ()=>{
+    try {
+      if(!token){
+        return null
+      }
+      console.log("load working");
+      // console.log(backendUrl);
+      
+      
+     const response = await axios.post(  backendUrl + '/api/order/userorders',{},{headers:{token}})
+   console.log(response.data);
+  
+     
+      
+    } catch (error) {
+      
+    }
+
+  }
+
   return (
     <>
     <div className='border-t pt-16'>
@@ -15,7 +47,7 @@ const Orders = () => {
 
       <div className=''>
         {
-          products.slice(1,4).map( (item,index)=>(
+          orderData.map( (item,index)=>(
             <div key={index} className='py-4 border-t border-b text-gray-700 flex flex-col md:flex-row md:items-center md:justify-between gap-4 '>
 
               <div className='flex items-start gap-6 text-sm'>

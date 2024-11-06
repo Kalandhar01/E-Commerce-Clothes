@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { contact_img } from '../assets'
 import News from '../component/News'
 import Title from '../component/Title'
@@ -20,7 +21,10 @@ const Contact = () => {
 
         <p className='font-semibold text-xl text-gray-500'> Carees At Male Fashion</p>
         <p className='text-gray-500'>Learn More about Our teams and job Openings</p>
+       
+       <Link to='/'>
         <button className='border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500'>Explore All</button>
+       </Link>
       </div> 
     </div>
     <News/>
