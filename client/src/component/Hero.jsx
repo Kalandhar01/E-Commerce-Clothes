@@ -47,7 +47,7 @@ const Hero = () => {
   }, [collections.length]);
 
   return (
-    <div className='w-full h-screen relative overflow-hidden '>
+    <div className='w-full h-screen relative overflow-hidden pl-2'>
 
       <img src={right} alt="" className='w-full h-full object-cover opacity-50 ' />
 
@@ -85,7 +85,7 @@ const Hero = () => {
               </motion.p>
               <div className='mt-4 text-center md:text-left'> 
                <Link to='/collection' >
-               <Button />
+               <Button /> 
                
                </Link>
               </div>
@@ -126,7 +126,10 @@ const Hero = () => {
                 {collections[currentIndex].description}
               </motion.p>
               <div className='mt-4 text-center md:text-left prata-regular'> 
-                <Button />
+              <Link to='/collection' >
+               <Button /> 
+               
+               </Link>
               </div>
             </div>
             <motion.div className='w-[90%] md:w-[50%] mx-auto' initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 0.5 } }}>
@@ -136,7 +139,7 @@ const Hero = () => {
         )}
       </AnimatePresence>
 
-      <div className='absolute top-[15rem] left-7 z-10 max-sm:top-[23rem]'>
+      <div className='absolute top-[40rem] left-7 z-10 max-sm:top-[23rem]'>
         <img
           src={left}
           alt="Toggle Collection"
@@ -145,7 +148,7 @@ const Hero = () => {
         />
       </div>
 
-      <div className='absolute top-[15rem] right-7 z-10 max-sm:top-[23rem]'>
+      <div className='absolute top-[40rem] right-7 z-10 max-sm:top-[23rem]'>
         <img
           src={rightarr}
           alt="Toggle Collection"
