@@ -14,7 +14,8 @@ const Orders = () => {
 
   }, [token]);
   const[orderData, setOrderData] = useState([]);
-
+  console.log(token);
+  
   //toload the data from backend
   const loadOrderData = async ()=>{
     try {

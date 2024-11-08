@@ -74,6 +74,12 @@ const PlaceOrder = () => {
           toast.error(response.data.message);
         }
       }
+      // else if(method == 'stripe')
+
+
+
+
+
     } catch (error) {
       console.error('Error submitting the order:', error);
       toast.error("An error occurred while submitting your order.");

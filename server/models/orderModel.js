@@ -5,10 +5,11 @@ const orderSchema = new mongoose.Schema( {
     items : {type:Array , required: true},
     amount : {type:Number , required: true},
     address : {type:Object , required: true},
+    paymentMethod: "Stripe",
 
     //it can be update from the admin
     status : {type: String , required: true, default:'Order Placed '},
-    paymentMethoed : {type: String },
+    paymentMethod : {type: String, required:true},
     payment : {type: Boolean , required: true, default :false},
     date:{type:Number, required:true}
 })

@@ -9,7 +9,7 @@ const SearchBar = () => {
     const [visible ,setVisible] = useState(false);
 
     const location = useLocation();
-    console.log(location);
+    // console.log(location);
     
     
     useEffect(() => {
