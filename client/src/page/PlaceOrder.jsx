@@ -9,25 +9,12 @@ import { ShopContext } from '../context/ShopCon';
 const PlaceOrder = () => {
   const [method, setMethod] = useState('cod');
   const {
-    products, currency, delivery_fee, search, setSearch, showSearch, setShowSearch,
-    cartItems, addToCart, getCardCount, updateQ, Amount, navigate, backendUrl, setToken, token, setCardItems,
+    products, currency, delivery_fee, cartItems, Amount, navigate, backendUrl, setCardItems, token,
   } = useContext(ShopContext);
 
-  // console.log(cartItems);
-  // console.log(backendUrl);
-  
-  
-
   const [formData, setFormData] = useState({
-    firstname: '',
-    lastname: '',
-    email: '',
-    street: '',
-    city: '',
-    state: '',
-    zipcode: '',
-    country: '',
-    phone: '',
+    firstname: '', lastname: '', email: '', street: '',
+    city: '', state: '', zipcode: '', country: '', phone: '',
   });
 
   const handleChange = (e) => {
@@ -35,57 +22,62 @@ const PlaceOrder = () => {
     setFormData((data) => ({ ...data, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      let orderItems = [];
-      for (const itemKey of Object.keys(cartItems)) {
-        for (const sizeKey of Object.keys(cartItems[itemKey])) {
-          const quantity = cartItems[itemKey][sizeKey];
-          if (quantity > 0) {
-            const itemInfo = structuredClone(products.find((product) => product._id === itemKey));
-            if (itemInfo) {
-              itemInfo.size = sizeKey;
-              itemInfo.quantity = quantity;
-              orderItems.push(itemInfo);
-            }
+  // Extracts and structures order items
+  const prepareOrderItems = () => {
+    const orderItems = [];
+    for (const itemKey in cartItems) {
+      for (const sizeKey in cartItems[itemKey]) {
+        const quantity = cartItems[itemKey][sizeKey];
+        if (quantity > 0) {
+          const itemInfo = structuredClone(products.find((product) => product._id === itemKey));
+          if (itemInfo) {
+            itemInfo.size = sizeKey;
+            itemInfo.quantity = quantity;
+            orderItems.push(itemInfo);
           }
         }
       }
-  
-      let orderData = {
-        address: formData,
-        items: orderItems,
-        amount: Amount() + delivery_fee
-      };
-  
-      // API FOR COD
+    }
+    return orderItems;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const orderItems = prepareOrderItems();
+
+    const orderData = {
+      address: formData,
+      items: orderItems,
+      amount: Amount() + delivery_fee,
+    };
+
+    try {
       if (method === 'cod') {
-        console.log(" i am workinh");
-        
-        const response = await axios.post(  backendUrl + '/api/order/place', orderData, { headers: { token } });
-        console.log("response: " + response.data);
-  
+        const response = await axios.post(`${backendUrl}/api/order/place`, orderData, { headers: { token } });
         if (response.data.success) {
           setCardItems({});
-          toast.success("Success");
+          toast.success("Order placed successfully!");
           navigate('/orders');
         } else {
           toast.error(response.data.message);
         }
+      } else if (method === 'stripe') {
+        const responseStripe = await axios.post(`${backendUrl}/api/order/stripe`, orderData, { headers: { token } });
+        if (responseStripe.data.success) {
+          const { session_url } = responseStripe.data;
+          window.location.replace(session_url);
+        } else {
+          toast.error(responseStripe.data.message);
+        }
+      } else if (method === 'razorpay') {
+        toast.error("Razorpay integration pending. Use Stripe for payment.");
       }
-      // else if(method == 'stripe')
-
-
-
-
-
     } catch (error) {
       console.error('Error submitting the order:', error);
       toast.error("An error occurred while submitting your order.");
     }
   };
-  
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -94,7 +86,7 @@ const PlaceOrder = () => {
       {/* Left Side */}
       <div className='flex flex-col gap-4 w-full sm:max-w-[480px]'>
         <div className='text-xl sm:text-2xl my-3'>
-          <Title text1={"DELIVER"} text2={"INFORMATION"} />
+          <Title text1={"DELIVERY"} text2={"INFORMATION"} />
         </div>
         <div className='flex gap-3'>
           <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='First Name' onChange={handleChange} name='firstname' value={formData.firstname} required />
