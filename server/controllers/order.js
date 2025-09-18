@@ -1,4 +1,5 @@
-import razorpay from 'razorpay';
+
+// import razorpay from 'razorpay';
 import Stripe from 'stripe';
 import orderModel from '../models/orderModel.js';
 import userModel from '../models/userModel.js';
@@ -14,10 +15,10 @@ const deliveryCharges = 10
 //GATEWAYE
 
 //RazorPay Instance
-const razorPayInstance = new razorpay({
-  key_id:process.env.RAZORPAY_KEY_ID,
-  key_secret:process.env.RAZORPAY_KEY_SECRET,
-})
+// const razorPayInstance = new razorpay({
+//   key_id:process.env.RAZORPAY_KEY_ID,
+//   key_secret:process.env.RAZORPAY_KEY_SECRET,
+// })
 
 //STRIPE 
 
